@@ -1,5 +1,6 @@
 package com.kodlamaio.inventoryservice.business.concretes;
 
+import com.kodlamaio.common.utilities.exceptions.BusinessException;
 import com.kodlamaio.common.utilities.mapping.ModelMapperService;
 import com.kodlamaio.inventoryservice.business.abstracts.CarService;
 import com.kodlamaio.inventoryservice.business.requests.create.CreateCarRequest;
@@ -34,6 +35,7 @@ public class CarManager implements CarService {
 
     @Override
     public CreateCarResponse add(CreateCarRequest createCarRequest) {
+        checkIfCarExistsByPlate(createCarRequest.getPlate());
         Car car = mapper.forRequest().map(createCarRequest, Car.class);
         car.setId(UUID.randomUUID().toString());
         carRepository.save(car);
@@ -55,6 +57,13 @@ public class CarManager implements CarService {
     @Override
     public void delete(String id) {
         carRepository.deleteById(id);
+    }
+    private void checkIfCarExistsByPlate(String plate){
+        Car car=carRepository.findByPlate(plate);
+
+        if(car!=null) {
+            throw new BusinessException("CAR.EXISTS!");
+        }
     }
 
 }
