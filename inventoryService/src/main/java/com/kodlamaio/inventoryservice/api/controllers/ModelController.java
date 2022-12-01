@@ -17,20 +17,20 @@ import java.util.List;
 public class ModelController {
     ModelService modelService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     List<GetAllModelsResponse> getAll() {
         return modelService.getAll();
     }
-    @PostMapping("/add")
+    @PostMapping
     CreateModelResponse add(@RequestBody CreateModelRequest createModelRequest) {
         return modelService.add(createModelRequest);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     UpdateModelResponse update(@PathVariable String id, @RequestBody UpdateModelRequest updateModelRequest) {
         return modelService.update(id,updateModelRequest);
 
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     void delete(@PathVariable String id){
         modelService.delete(id);
     }

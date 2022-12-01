@@ -17,20 +17,20 @@ import java.util.List;
 public class BrandController {
     BrandService brandService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     List<GetAllBrandsResponse> getAll() {
         return brandService.getAll();
     }
-    @PostMapping("/add")
+    @PostMapping
     CreateBrandResponse add(@RequestBody CreateBrandRequest createBrandRequest) {
         return brandService.add(createBrandRequest);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     UpdateBrandResponse update(@PathVariable String id, @RequestBody UpdateBrandRequest updateBrandRequest) {
         return brandService.update(id,updateBrandRequest);
 
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     void delete(@PathVariable String id){
         brandService.delete(id);
     }

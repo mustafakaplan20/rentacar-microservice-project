@@ -17,20 +17,20 @@ import java.util.List;
 public class CarController {
     CarService carService;
 
-    @GetMapping("/getAll")
+    @GetMapping
     List<GetAllCarsResponse> getAll() {
         return carService.getAll();
     }
-    @PostMapping("/add")
+    @PostMapping
     CreateCarResponse add(@RequestBody CreateCarRequest createCarRequest) {
         return carService.add(createCarRequest);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/{id}")
     UpdateCarResponse update(@PathVariable String id, @RequestBody UpdateCarRequest updateCarRequest) {
         return carService.update(id,updateCarRequest);
 
     }
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/{id}")
     void delete(@PathVariable String id){
         carService.delete(id);
     }
