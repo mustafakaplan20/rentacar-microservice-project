@@ -7,6 +7,11 @@
         <option value="$PROJECT_DIR$/inventoryService/pom.xml" />
         <option value="$PROJECT_DIR$/common/pom.xml" />
         <option value="$PROJECT_DIR$/apigateway/pom.xml" />
+        <option value="$PROJECT_DIR$/rentalService/pom.xml" />
+        <option value="$PROJECT_DIR$/config-server/pom.xml" />
+        <option value="$PROJECT_DIR$/filter-service/pom.xml" />
+        <option value="$PROJECT_DIR$/invoice-service/pom.xml" />
+        <option value="$PROJECT_DIR$/payment-service/pom.xml" />
       </list>
     </option>
   </component>

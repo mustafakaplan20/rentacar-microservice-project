@@ -5,5 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface BrandRepository extends JpaRepository<Brand,String> {
     Brand findByName(String name);
+    boolean existsByNameIgnoreCase(String name);
 }
 

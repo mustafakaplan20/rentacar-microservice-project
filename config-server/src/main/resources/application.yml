@@ -1,0 +1,13 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        default-label: master
+        git:
+          uri: https://github.com/mustafakaplan20/rentacar-config-files
+  profiles:
+    active: ${CONFIG_PROFILE}

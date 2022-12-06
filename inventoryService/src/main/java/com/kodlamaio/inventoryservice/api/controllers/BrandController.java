@@ -5,34 +5,46 @@ import com.kodlamaio.inventoryservice.business.requests.create.CreateBrandReques
 import com.kodlamaio.inventoryservice.business.requests.update.UpdateBrandRequest;
 import com.kodlamaio.inventoryservice.business.responses.create.CreateBrandResponse;
 import com.kodlamaio.inventoryservice.business.responses.get.GetAllBrandsResponse;
+import com.kodlamaio.inventoryservice.business.responses.get.GetBrandResponse;
 import com.kodlamaio.inventoryservice.business.responses.update.UpdateBrandResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/brands")
 public class BrandController {
-    BrandService brandService;
+    private final BrandService service;
 
     @GetMapping
-    List<GetAllBrandsResponse> getAll() {
-        return brandService.getAll();
+    public List<GetAllBrandsResponse> getAll() {
+        return service.getAll();
     }
-    @PostMapping
-    CreateBrandResponse add(@RequestBody CreateBrandRequest createBrandRequest) {
-        return brandService.add(createBrandRequest);
-    }
-    @PutMapping("/{id}")
-    UpdateBrandResponse update(@PathVariable String id, @RequestBody UpdateBrandRequest updateBrandRequest) {
-        return brandService.update(id,updateBrandRequest);
 
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public CreateBrandResponse add(@Valid @RequestBody CreateBrandRequest request) {
+        return service.add(request);
     }
+
+    @PutMapping("/{id}")
+    public UpdateBrandResponse update(@Valid @RequestBody UpdateBrandRequest request, @PathVariable String id) {
+        return service.update(request, id);
+    }
+
     @DeleteMapping("/{id}")
-    void delete(@PathVariable String id){
-        brandService.delete(id);
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String id) {
+        service.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public GetBrandResponse getById(@PathVariable String id) {
+        return service.getById(id);
     }
 
 

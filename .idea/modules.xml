@@ -4,9 +4,14 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/apigateway/apigateway.iml" filepath="$PROJECT_DIR$/apigateway/apigateway.iml" />
       <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/config-server/config-server.iml" filepath="$PROJECT_DIR$/config-server/config-server.iml" />
       <module fileurl="file://$PROJECT_DIR$/discovery-server/discovery-server.iml" filepath="$PROJECT_DIR$/discovery-server/discovery-server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/filter-service/filter-service.iml" filepath="$PROJECT_DIR$/filter-service/filter-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/inventoryService/inventoryService.iml" filepath="$PROJECT_DIR$/inventoryService/inventoryService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/invoice-service/invoice-service.iml" filepath="$PROJECT_DIR$/invoice-service/invoice-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/payment-service/payment-service.iml" filepath="$PROJECT_DIR$/payment-service/payment-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/rentacar.iml" filepath="$PROJECT_DIR$/rentacar.iml" />
+      <module fileurl="file://$PROJECT_DIR$/rentalService/rentalService.iml" filepath="$PROJECT_DIR$/rentalService/rentalService.iml" />
     </modules>
   </component>
 </project>

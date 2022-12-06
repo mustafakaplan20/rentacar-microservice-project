@@ -5,33 +5,55 @@ import com.kodlamaio.inventoryservice.business.requests.create.CreateCarRequest;
 import com.kodlamaio.inventoryservice.business.requests.update.UpdateCarRequest;
 import com.kodlamaio.inventoryservice.business.responses.create.CreateCarResponse;
 import com.kodlamaio.inventoryservice.business.responses.get.GetAllCarsResponse;
+import com.kodlamaio.inventoryservice.business.responses.get.GetCarResponse;
 import com.kodlamaio.inventoryservice.business.responses.update.UpdateCarResponse;
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/cars")
 public class CarController {
-    CarService carService;
+    private final CarService service;
 
     @GetMapping
-    List<GetAllCarsResponse> getAll() {
-        return carService.getAll();
+    public List<GetAllCarsResponse> getAll() {
+        return service.getAll();
     }
-    @PostMapping
-    CreateCarResponse add(@RequestBody CreateCarRequest createCarRequest) {
-        return carService.add(createCarRequest);
-    }
-    @PutMapping("/{id}")
-    UpdateCarResponse update(@PathVariable String id, @RequestBody UpdateCarRequest updateCarRequest) {
-        return carService.update(id,updateCarRequest);
 
+    @PostMapping
+    @ResponseStatus(value = HttpStatus.CREATED)
+    public CreateCarResponse add(@Valid @RequestBody CreateCarRequest request) {
+        return service.add(request);
     }
+
+    @PutMapping("/{id}")
+    public UpdateCarResponse update(@Valid @RequestBody UpdateCarRequest request, @PathVariable String id) {
+        return service.update(request, id);
+    }
+
     @DeleteMapping("/{id}")
-    void delete(@PathVariable String id){
-        carService.delete(id);
+    @ResponseStatus(value = HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable String id) {
+        service.delete(id);
+    }
+
+    @GetMapping("/{id}")
+    public GetCarResponse getById(@PathVariable String id) {
+        return service.getById(id);
+    }
+
+    @GetMapping("/check-car-available/{id}")
+    public void checkIfCarAvailable(@PathVariable String id) {
+        service.checkIfCarAvailable(id);
+    }
+
+    @GetMapping("/get-car-response/{id}")
+    public GetCarResponse getCarResponse(@PathVariable String id) {
+        return service.getById(id);
     }
 }
